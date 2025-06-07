@@ -6,6 +6,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Link } from 'react-router';
 
 const minUsernameCharacters: number = 2;
 const minPasswordCharacters: number = 6;
@@ -21,7 +22,7 @@ export function SignInForm() {
   });
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
         <FormField
           control={form.control}
           name="username"
@@ -50,22 +51,29 @@ export function SignInForm() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="remember"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Senha</FormLabel> */}
-              <div className="flex flex-row items-center gap-2">
-                <FormControl>
-                  <Checkbox id="remember" checked={field.value} onCheckedChange={field.onChange} ref={field.ref} />
-                </FormControl>
-                <FormDescription>Lembrar usuário</FormDescription>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-row justify-between">
+          <FormField
+            control={form.control}
+            name="remember"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>Senha</FormLabel> */}
+                <div className="flex flex-row items-center gap-2">
+                  <FormControl>
+                    <Checkbox id="remember" checked={field.value} onCheckedChange={field.onChange} ref={field.ref} />
+                  </FormControl>
+                  <FormDescription>Lembrar usuário</FormDescription>
+                </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormDescription>
+            <Link to="#" className="hover:brightness-85">
+              Esqueci minha senha
+            </Link>
+          </FormDescription>
+        </div>
         <Button className="mt-4 w-full h-11" type="submit">
           Acessar
         </Button>
