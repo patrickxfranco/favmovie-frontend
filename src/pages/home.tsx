@@ -1,6 +1,8 @@
+import type React from 'react';
+
 import { Button } from '@/components/ui/button';
 
-export function Home() {
+export function Home(): React.ReactElement {
   return (
     <div className="p-4">
       <Button variant="default" className="w-50">
