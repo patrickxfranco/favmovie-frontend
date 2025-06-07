@@ -7,6 +7,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } 
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router';
+import { Link } from 'react-router';
 
 const minUsernameCharacters: number = 2;
 const minPasswordCharacters: number = 6;
@@ -22,6 +23,7 @@ export function SignInForm() {
   });
   return (
     <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
         <FormField
           control={form.control}
