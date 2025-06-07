@@ -76,7 +76,7 @@ export function SignInForm() {
 
 const formSchema = z.object({
   username: z.string().min(minUsernameCharacters, `O usuário deve conter no mínimo ${minUsernameCharacters} caracteres`).max(50),
-  password: z.string().min(6, `A senha deve conter no mínimo ${minPasswordCharacters} caracteres`).max(50),
+  password: z.string().min(minPasswordCharacters, `A senha deve conter no mínimo ${minPasswordCharacters} caracteres`).max(50),
   remember: z.boolean().optional(),
 });
 

@@ -10,6 +10,7 @@ import { Home } from '@/pages/home';
 import { SignIn } from '@/pages/auth/signin';
 import { SignUp } from '@/pages/auth/signup';
 import { SettingsProfile } from '@/pages/settings/settingsProfile';
+import { TermsOfUse } from '@/pages/terms';
 
 export const router: DataRouter = createBrowserRouter([
   {
@@ -33,5 +34,9 @@ export const router: DataRouter = createBrowserRouter([
       { path: 'movies', element: <div>movies</div> },
       { path: 'series', element: <div>series</div> },
     ],
+  },
+  {
+    path: 'terms-of-use',
+    element: <TermsOfUse />,
   },
 ]);

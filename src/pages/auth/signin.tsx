@@ -13,7 +13,7 @@ export function SignIn(): React.ReactElement {
         </Button>
       </Link>
       <div className="flex flex-col mb-10 w-100">
-        <h1 className="font-black text-[32px] uppercase">Entre</h1>
+        <h1 className="font-black text-[32px] uppercase">Entrar</h1>
         <span className="font-light text-muted-foreground">para começar a gerenciar seus filmes e séries favoritos.</span>
       </div>
       <SignInForm />
