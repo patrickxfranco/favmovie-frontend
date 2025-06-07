@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 
 export function AppLayout(): React.ReactElement {
   return (
-    <div>
+    <div className="antialiased">
       <Outlet />
     </div>
   );
