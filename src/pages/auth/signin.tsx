@@ -1,4 +1,5 @@
 import type React from 'react';
+import { FilePenLine } from 'lucide-react';
 import { Link } from 'react-router';
 
 import { Button } from '@/components/ui/button';
@@ -8,8 +9,9 @@ export function SignIn(): React.ReactElement {
   return (
     <div>
       <Link to="/sign-up">
-        <Button variant="secondary" className="top-12 right-12 absolute">
-          Cadastrar-se
+        <Button variant="outline" className="top-12 right-12 absolute">
+          <FilePenLine />
+          Cadastro
         </Button>
       </Link>
       <div className="flex flex-col mb-10 w-100">

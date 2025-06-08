@@ -1,4 +1,5 @@
 import type React from 'react';
+import { LogIn } from 'lucide-react';
 import { Link } from 'react-router';
 
 import { Button } from '@/components/ui/button';
@@ -9,7 +10,8 @@ export function SignUp(): React.ReactElement {
     <div>
       <Link to="/sign-in">
         <Button variant="secondary" className="top-12 right-12 absolute">
-          Logar-se
+          <LogIn />
+          Login
         </Button>
       </Link>
       <div className="flex flex-col mb-10 w-100">

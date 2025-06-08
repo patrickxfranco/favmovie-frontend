@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
@@ -6,7 +7,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Link } from 'react-router';
+
+import { LogIn } from 'lucide-react';
 
 const minUsernameCharacters: number = 2;
 const minPasswordCharacters: number = 6;
@@ -78,9 +80,12 @@ export function SignInForm() {
             </Link>
           </FormDescription>
         </div>
-        <Button className="mt-4 w-full h-11" type="submit">
-          Acessar
-        </Button>
+        <Link to="/home">
+          <Button className="mt-4 w-full h-11" type="submit">
+            <LogIn />
+            Acessar
+          </Button>
+        </Link>
       </form>
     </Form>
   );

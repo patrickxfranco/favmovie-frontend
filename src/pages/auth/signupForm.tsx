@@ -1,3 +1,4 @@
+import { FilePenLine } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { z } from 'zod';
@@ -128,10 +129,10 @@ export function SignUpForm() {
                 <FormControl>
                   <Checkbox id="remember" checked={field.value} onCheckedChange={field.onChange} ref={field.ref} />
                 </FormControl>
-                <FormDescription>
+                <FormDescription className="hover:brightness-85">
                   Ao cadastrar, aceito os{' '}
                   <Link
-                    className="hover:brightness-85 text-amber-300 dark:text-amber-400 underline underline-offset-4"
+                    className="text-amber-300 dark:text-amber-400 hover:underline underline-offset-4"
                     target="_blank"
                     to="/terms-of-use"
                   >
@@ -144,6 +145,7 @@ export function SignUpForm() {
           )}
         />
         <Button className="mt-4 w-full h-11" type="submit">
+          <FilePenLine />
           Cadastrar
         </Button>
       </form>
