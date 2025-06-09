@@ -1,8 +1,9 @@
 import { Separator } from '@/components/ui/separator';
+import { Fragment } from 'react/jsx-runtime';
 
 export function TermsOfUse() {
   return (
-    <div className="flex">
+    <Fragment>
       <div className="bg-muted mx-auto my-20 p-12 rounded-sm w-200">
         <h1 className="mb-4 font-black text-[20px] text-center uppercase">Termos de uso</h1>
         <p className="text-justify indent-5">
@@ -70,6 +71,6 @@ export function TermsOfUse() {
           </li>
         </ul>
       </div>
-    </div>
+    </Fragment>
   );
 }

@@ -132,7 +132,7 @@ export function SignUpForm() {
                 <FormDescription className="hover:brightness-85">
                   Ao cadastrar, aceito os{' '}
                   <Link
-                    className="text-amber-300 dark:text-amber-400 hover:underline underline-offset-4"
+                    className="text-amber-600 dark:text-amber-400 hover:underline underline-offset-4"
                     target="_blank"
                     to="/terms-of-use"
                   >

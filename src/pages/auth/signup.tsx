@@ -9,7 +9,7 @@ export function SignUp(): React.ReactElement {
   return (
     <div>
       <Link to="/sign-in">
-        <Button variant="secondary" className="top-12 right-12 absolute">
+        <Button variant="outline" className="top-12 right-12 absolute">
           <LogIn />
           Login
         </Button>
