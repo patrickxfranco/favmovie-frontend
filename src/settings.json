@@ -1,0 +1,21 @@
+{
+  "signUpSettings": {
+    "signUpEnabled": true,
+
+    "minUsernameCharactersLenght": 2,
+    "minPasswordCharactersLenght": 6,
+    "minFirstNameCharactersLenght": 4,
+    "minLastNameCharactersLenght": 4,
+
+    "firstNameRequired": false,
+    "lastNameRequired": false,
+    "usernameRequired": true,
+    "emailRequired": false,
+    "passwordRequired": false
+  },
+  "signInSettings": {
+    "signInEnabled": true,
+    "usernameRequired": true,
+    "passwordRequired": false
+  }
+}

@@ -10,8 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { LogIn } from 'lucide-react';
 
-const minUsernameCharacters: number = 2;
-const minPasswordCharacters: number = 6;
+import { signInSettings } from '@/settings.json';
 
 export function SignInForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -25,63 +24,69 @@ export function SignInForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Usuário</FormLabel> */}
-              <FormControl>
-                <Input className="h-11" placeholder="Usuário" {...field} />
-              </FormControl>
-              {/* <FormDescription>Este é seu nome público</FormDescription> */}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Senha</FormLabel> */}
-              <FormControl>
-                <Input className="h-11" placeholder="Senha" type="password" {...field} />
-              </FormControl>
-              {/* <FormDescription>Este é seu nome público</FormDescription> */}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="flex flex-row justify-between">
+        {signInSettings.usernameRequired ? (
           <FormField
             control={form.control}
-            name="remember"
+            name="username"
             render={({ field }) => (
               <FormItem>
-                {/* <FormLabel>Senha</FormLabel> */}
-                <div className="flex flex-row items-center gap-2">
-                  <FormControl>
-                    <Checkbox id="remember" checked={field.value} onCheckedChange={field.onChange} ref={field.ref} />
-                  </FormControl>
-                  <FormDescription>
-                    <label htmlFor="remember" className="hover:brightness-85 cursor-pointer">
-                      Lembrar usuário
-                    </label>
-                  </FormDescription>
-                </div>
+                {/* <FormLabel>Usuário</FormLabel> */}
+                <FormControl>
+                  <Input className="h-11" disabled={!signInSettings.usernameRequired} placeholder="Usuário" {...field} />
+                </FormControl>
+                {/* <FormDescription>Este é seu nome público</FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
           />
-          <FormDescription>
-            <Link to="#" className="hover:brightness-85">
-              Esqueci minha senha
-            </Link>
-          </FormDescription>
-        </div>
+        ) : null}
+        {signInSettings.passwordRequired ? (
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>Senha</FormLabel> */}
+                <FormControl>
+                  <Input className="h-11" disabled={!signInSettings.passwordRequired} placeholder="Senha" type="password" {...field} />
+                </FormControl>
+                {/* <FormDescription>Este é seu nome público</FormDescription> */}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : null}
+        {signInSettings.signInEnabled ? (
+          <div className="flex flex-row justify-between">
+            <FormField
+              control={form.control}
+              name="remember"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Senha</FormLabel> */}
+                  <div className="flex flex-row items-center gap-2">
+                    <FormControl>
+                      <Checkbox id="remember" checked={field.value} onCheckedChange={field.onChange} ref={field.ref} />
+                    </FormControl>
+                    <FormDescription>
+                      <label htmlFor="remember" className="hover:brightness-85 cursor-pointer">
+                        Lembrar usuário
+                      </label>
+                    </FormDescription>
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormDescription>
+              <Link to="#" className="hover:brightness-85">
+                Esqueci minha senha
+              </Link>
+            </FormDescription>
+          </div>
+        ) : null}
         <Link to="/home">
-          <Button className="mt-4 w-full h-11" type="submit">
+          <Button className="mt-4 w-full h-11" disabled={!signInSettings.signInEnabled} type="submit">
             <LogIn />
             Acessar
           </Button>
@@ -92,8 +97,8 @@ export function SignInForm() {
 }
 
 const formSchema = z.object({
-  username: z.string().min(minUsernameCharacters, `O usuário deve conter no mínimo ${minUsernameCharacters} caracteres`).max(50),
-  password: z.string().min(minPasswordCharacters, `A senha deve conter no mínimo ${minPasswordCharacters} caracteres`).max(50),
+  username: z.string(),
+  password: z.string(),
   remember: z.boolean().optional(),
 });
 

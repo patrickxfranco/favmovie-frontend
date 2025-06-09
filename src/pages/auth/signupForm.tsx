@@ -7,12 +7,13 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { signUpSettings } from '@/settings.json';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const minUsernameCharactersLenght: number = 2;
-const minPasswordCharactersLenght: number = 6;
-const minFirstNameCharactersLenght: number = 4;
-const minLastNameCharactersLenght: number = 4;
+const minUsernameCharactersLenght: number = signUpSettings.usernameRequired ? signUpSettings.minUsernameCharactersLenght : 0;
+const minPasswordCharactersLenght: number = signUpSettings.passwordRequired ? signUpSettings.minPasswordCharactersLenght : 0;
+const minFirstNameCharactersLenght: number = signUpSettings.firstNameRequired ? signUpSettings.minFirstNameCharactersLenght : 0;
+const minLastNameCharactersLenght: number = signUpSettings.lastNameRequired ? signUpSettings.minLastNameCharactersLenght : 0;
 
 export function SignUpForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -30,95 +31,123 @@ export function SignUpForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
-        <FormItem>Dados Pessoais</FormItem>
+        {signUpSettings.firstNameRequired === false && signUpSettings.lastNameRequired === false ? null : (
+          <FormItem>Dados Pessoais</FormItem>
+        )}
         <div className="flex flex-row gap-2 w-full">
-          <FormField
-            control={form.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                {/* <FormLabel>Usuário</FormLabel> */}
-                <FormControl>
-                  <Input className="h-11" placeholder="Primeiro nome" {...field} />
-                </FormControl>
-                {/* <FormDescription>Este é seu nome público</FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                {/* <FormLabel>Usuário</FormLabel> */}
-                <FormControl>
-                  <Input className="h-11" placeholder="Último nome" {...field} />
-                </FormControl>
-                {/* <FormDescription>Este é seu nome público</FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {signUpSettings.firstNameRequired ? (
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  {/* <FormLabel>Usuário</FormLabel> */}
+                  <FormControl>
+                    <Input className="h-11" disabled={!signUpSettings.firstNameRequired} placeholder="Primeiro nome" {...field} />
+                  </FormControl>
+                  {/* <FormDescription>Este é seu nome público</FormDescription> */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          ) : null}
+          {signUpSettings.lastNameRequired ? (
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  {/* <FormLabel>Usuário</FormLabel> */}
+                  <FormControl>
+                    <Input className="h-11" disabled={!signUpSettings.lastNameRequired} placeholder="Último nome" {...field} />
+                  </FormControl>
+                  {/* <FormDescription>Este é seu nome público</FormDescription> */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          ) : null}
         </div>
-        <FormItem className="mt-8">Acesso</FormItem>
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Usuário</FormLabel> */}
-              <FormControl>
-                <Input className="h-11" placeholder="Usuário" {...field} />
-              </FormControl>
-              {/* <FormDescription>Este é seu nome público</FormDescription> */}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Usuário</FormLabel> */}
-              <FormControl>
-                <Input className="h-11" placeholder="Email" {...field} />
-              </FormControl>
-              {/* <FormDescription>Este é seu nome público</FormDescription> */}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormItem className="mt-8">Senhas</FormItem>
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Senha</FormLabel> */}
-              <FormControl>
-                <Input className="h-11" placeholder="Senha de acesso" type="password" {...field} />
-              </FormControl>
-              {/* <FormDescription>Este é seu nome público</FormDescription> */}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Senha</FormLabel> */}
-              <FormControl>
-                <Input className="h-11" placeholder="Confirmação da senha" type="password" {...field} />
-              </FormControl>
-              {/* <FormDescription>Este é seu nome público</FormDescription> */}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {signUpSettings.usernameRequired === false && signUpSettings.emailRequired === false ? null : (
+          <FormItem className="mt-8">Acesso</FormItem>
+        )}
+        {signUpSettings.usernameRequired ? (
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>Usuário</FormLabel> */}
+                <FormControl>
+                  <Input className="h-11" disabled={!signUpSettings.usernameRequired} placeholder="Usuário" {...field} />
+                </FormControl>
+                {/* <FormDescription>Este é seu nome público</FormDescription> */}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : null}
+        {signUpSettings.emailRequired ? (
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>Usuário</FormLabel> */}
+                <FormControl>
+                  <Input className="h-11" disabled={!signUpSettings.emailRequired} placeholder="Email" {...field} />
+                </FormControl>
+                {/* <FormDescription>Este é seu nome público</FormDescription> */}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : null}
+        {signUpSettings.passwordRequired ? <FormItem className="mt-8">Senhas</FormItem> : null}
+        {signUpSettings.passwordRequired ? (
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>Senha</FormLabel> */}
+                <FormControl>
+                  <Input
+                    className="h-11"
+                    disabled={!signUpSettings.passwordRequired}
+                    placeholder="Senha de acesso"
+                    type="password"
+                    {...field}
+                  />
+                </FormControl>
+                {/* <FormDescription>Este é seu nome público</FormDescription> */}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : null}
+        {signUpSettings.passwordRequired ? (
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>Senha</FormLabel> */}
+                <FormControl>
+                  <Input
+                    className="h-11"
+                    disabled={!signUpSettings.passwordRequired}
+                    placeholder="Confirmação da senha"
+                    type="password"
+                    {...field}
+                  />
+                </FormControl>
+                {/* <FormDescription>Este é seu nome público</FormDescription> */}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : null}
         <FormField
           control={form.control}
           name="acceptTerms"
@@ -144,7 +173,7 @@ export function SignUpForm() {
             </FormItem>
           )}
         />
-        <Button className="mt-4 w-full h-11" type="submit">
+        <Button className="mt-4 w-full h-11" type="submit" disabled={!signUpSettings.signUpEnabled}>
           <FilePenLine />
           Cadastrar
         </Button>
@@ -161,7 +190,7 @@ const formSchema = z
       .string()
       .min(minUsernameCharactersLenght, `O usuário deve conter no mínimo ${minUsernameCharactersLenght} caracteres`)
       .max(50),
-    email: z.string().email('Este email não é válido'),
+    email: signUpSettings.emailRequired ? z.string().email('Este email não é válido') : undefined,
     password: z
       .string()
       .min(minPasswordCharactersLenght, `A senha deve conter no mínimo ${minPasswordCharactersLenght} caracteres`)
