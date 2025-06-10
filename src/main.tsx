@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { router } from '@/router';
 
 const rootElement: HTMLElement = document.getElementById('root')!;
