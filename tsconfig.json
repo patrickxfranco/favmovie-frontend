@@ -15,10 +15,10 @@
     "noEmit": true,
 
     /* Linting */
-    "strict": false,
-    "noImplicitAny": false,
-    "strictNullChecks": false,
-    "strictBindCallApply": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
@@ -30,7 +30,7 @@
       "@/*": ["./src/*"],
       "@/components/*": ["./src/components/*"],
       "@/pages/*": ["./src/pages/*"],
-      "@/layouts/*": ["./src/pages/layouts/*"]
+      "@/layouts/*": ["src/layouts/*"]
     }
   },
   "include": ["src"]
