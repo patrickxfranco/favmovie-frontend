@@ -9,7 +9,7 @@ const rootElement: HTMLElement = document.getElementById('root')!;
 
 ReactDOM.createRoot(rootElement).render(
   // <React.StrictMode>
-  <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+  <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
     <RouterProvider router={router} />
   </ThemeProvider>
   // </React.StrictMode>

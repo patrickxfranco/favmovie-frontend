@@ -190,7 +190,7 @@ const formSchema = z
       .string()
       .min(minUsernameCharactersLenght, `O usuário deve conter no mínimo ${minUsernameCharactersLenght} caracteres`)
       .max(50),
-    email: signUpSettings.emailRequired ? z.string().email('Este email não é válido') : undefined,
+    email: signUpSettings.emailRequired ? z.string().email('Este email não é válido') : z.string().optional(),
     password: z
       .string()
       .min(minPasswordCharactersLenght, `A senha deve conter no mínimo ${minPasswordCharactersLenght} caracteres`)

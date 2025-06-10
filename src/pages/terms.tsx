@@ -1,5 +1,6 @@
-import { Separator } from '@/components/ui/separator';
 import { Fragment } from 'react/jsx-runtime';
+
+import { Separator } from '@/components/ui/separator';
 
 export function TermsOfUse() {
   return (

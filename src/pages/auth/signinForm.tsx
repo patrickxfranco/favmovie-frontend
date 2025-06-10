@@ -1,3 +1,4 @@
+import { LogIn } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { z } from 'zod';
@@ -6,11 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { zodResolver } from '@hookform/resolvers/zod';
-
-import { LogIn } from 'lucide-react';
-
 import { signInSettings } from '@/settings.json';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export function SignInForm() {
   const form = useForm<z.infer<typeof formSchema>>({

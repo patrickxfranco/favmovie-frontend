@@ -4,11 +4,10 @@ import { createBrowserRouter, type DataRouter } from 'react-router';
 import { AppLayout } from '@/layouts/appLayout';
 import { AuthLayout } from '@/layouts/authLayout';
 import { SettingsLayout } from '@/layouts/settingsLayout';
-
-// Pages
-import { Home } from '@/pages/home';
 import { SignIn } from '@/pages/auth/signin';
 import { SignUp } from '@/pages/auth/signup';
+// Pages
+import { Home } from '@/pages/home';
 import { SettingsProfile } from '@/pages/settings/settingsProfile';
 import { TermsOfUse } from '@/pages/terms';
 
